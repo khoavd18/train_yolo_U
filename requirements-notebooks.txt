@@ -1,0 +1,8 @@
+-r requirements.txt
+
+# Optional interactive environment. Kept separate from runtime/training deps.
+jupyterlab>=4.2,<5
+ipykernel>=6.29,<8
+ipython>=8.20,<10
+pandas>=2.2,<4
+matplotlib>=3.8,<4

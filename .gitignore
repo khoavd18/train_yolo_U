@@ -1,0 +1,69 @@
+# Python caches, test and coverage output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Local environments and credentials
+.venv/
+venv/
+env/
+.conda/
+.env
+.env.*
+!.env.example
+
+# Jupyter local state (the notebooks themselves remain shareable)
+.ipynb_checkpoints/
+
+# Local datasets and application sessions
+/data/
+runtime/
+
+# Generated experiment output. Curated lightweight reports may be copied to
+# outputs/share/ for mentor review; model/data files remain ignored there.
+outputs/**
+!outputs/share/
+!outputs/share/**/
+!outputs/share/**/*.md
+!outputs/share/**/*.json
+!outputs/share/**/*.csv
+!outputs/share/**/*.png
+
+# Training runs, model weights and deployment binaries
+runs/
+checkpoints/
+deploy/
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.torchscript
+*.engine
+
+# Python package/build output
+build/
+dist/
+*.egg-info/
+
+# Mobile dependencies, Expo state and native build output
+mobile/node_modules/
+mobile/.expo/
+mobile/android/.gradle/
+mobile/android/**/build/
+mobile/android/.cxx/
+mobile/android/local.properties
+*.apk
+*.aab
+
+# IDE and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*~

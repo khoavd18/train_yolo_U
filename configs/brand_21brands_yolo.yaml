@@ -1,0 +1,78 @@
+# Model 1: 21-brand ordinary YOLOv8n detection baseline. Manual launch only.
+# Preparation records source/export augmentation uncertainty in dataset_checks.json.
+model: yolov8n.pt
+data: data/brand_21brands_yolo_v2/data.yaml
+project: runs/model1_brand21
+name: yolov8n_100ep_s42_sourceorder_v2
+brand_profile: brand_21brands
+class_order: source_data_yaml
+
+train:
+  task: detect
+  epochs: 100
+  patience: 0
+  imgsz: 640
+  batch: 8
+  device: 0
+  amp: true
+  seed: 42
+  workers: 0
+  deterministic: true
+  single_cls: false
+  pretrained: true
+  resume: false
+  exist_ok: false
+  save: true
+  save_period: -1
+  plots: true
+  val: true
+  cache: false
+
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  momentum: 0.9
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  cos_lr: false
+
+  hsv_h: 0.01
+  hsv_s: 0.2
+  hsv_v: 0.2
+  translate: 0.05
+  scale: 0.2
+  degrees: 0.0
+  shear: 0.0
+  perspective: 0.0
+  fliplr: 0.0
+  flipud: 0.0
+  # Source metadata reports no export-time augmentation, and no offline mosaic
+  # was confirmed. Filename families still show upstream augmented variants.
+  mosaic: 0.3
+  close_mosaic: 10
+  mixup: 0.0
+  copy_paste: 0.0
+
+artifacts:
+  evaluate_test_split: false
+  write_training_summary: true
+  history_csv: results.csv
+  per_brand_validation_csv: per_brand_validation.csv
+  per_brand_validation_json: per_brand_validation.json
+  final_summary_markdown: training_summary.md
+  final_summary_json: training_summary.json
+
+checkpoint_selection:
+  source: ultralytics_8_3_155_validation_fitness
+  criterion: 0.1 * validation_mAP50 + 0.9 * validation_mAP50_95
+  tie_behavior: later_equal_fitness_epoch_overwrites_best_pt
+  test_metrics_used: false
+
+compatibility:
+  verified_ultralytics: 8.3.155
+  install_or_upgrade_automatically: false
+
+dataset_policy:
+  # Conflicting val/test family assignments and unsafe annotations remain in
+  # quarantine; only the structurally verified clean subset may be trained.
+  allow_quarantined_exclusions: true

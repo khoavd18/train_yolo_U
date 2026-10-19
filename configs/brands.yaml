@@ -1,0 +1,77 @@
+# Canonical detector-brand registry. Stable IDs are part of the deployed
+# detector contract and must not be reordered after a checkpoint is trained.
+schema_version: 1
+
+brands:
+  - id: 0
+    name: AXE
+    aliases: []
+  - id: 1
+    name: VIM
+    aliases: []
+  - id: 2
+    name: LIFEBUOY
+    aliases: []
+  - id: 3
+    name: HAZELINE
+    aliases: []
+  - id: 4
+    name: REXONA
+    aliases: []
+  - id: 5
+    name: CLEAR
+    aliases:
+      - CLEARMEN
+  - id: 6
+    name: DOVE
+    aliases: []
+  - id: 7
+    name: SUNSILK
+    aliases: []
+  - id: 8
+    name: TRESEMME
+    aliases: []
+  - id: 9
+    name: BEST_FOODS
+    aliases: []
+  - id: 10
+    name: CLOSE_UP
+    aliases: []
+  - id: 11
+    name: COMFORT
+    aliases: []
+  - id: 12
+    name: KNORR
+    aliases: []
+  - id: 13
+    name: LUX
+    aliases: []
+  - id: 14
+    name: OMO
+    aliases: []
+  - id: 15
+    name: PONDS
+    aliases: []
+  - id: 16
+    name: PS
+    aliases: []
+  - id: 17
+    name: SIMPLE
+    aliases: []
+  - id: 18
+    name: SUNLIGHT
+    aliases: []
+  - id: 19
+    name: SURF
+    aliases: []
+  - id: 20
+    name: VASELINE
+    aliases: []
+
+profiles:
+  brand_5brands:
+    brand_ids: [0, 1, 2, 3, 4]
+  brand_9brands:
+    brand_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+  brand_21brands:
+    brand_ids: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]

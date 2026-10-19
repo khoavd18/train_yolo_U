@@ -1,0 +1,27 @@
+# Exact identity contract for the existing five-class AXE checkpoint.
+# Item codes are quoted so YAML always preserves them as strings.
+schema_version: 1
+name: axe5
+brand: AXE
+
+classes:
+  - class_index: 0
+    legacy_class_name: AXE_NamXitNganMuiToanThanBlack_135ml_chai
+    item_code: "69566283"
+  - class_index: 1
+    legacy_class_name: AXE_NamXitNganMuiToanThanGold_135ml_chai
+    item_code: "69566284"
+  - class_index: 2
+    legacy_class_name: AXE_XitNganMuiToanThanIceChill_135ml_chai
+    item_code: "69566277"
+  - class_index: 3
+    legacy_class_name: AXE_SuaTamNuocHoaGoldenMango_532ML_Chai
+    item_code: "64863893"
+  - class_index: 4
+    legacy_class_name: AXE_SuaTamNuocHoaBlueLavender_532ML_Chai
+    item_code: "64863894"
+
+identity_guards:
+  blue_lavender:
+    spray: "64823658"
+    body_wash: "64863894"

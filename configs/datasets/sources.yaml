@@ -1,0 +1,57 @@
+# Known source exports. Paths are repository-root relative. Class IDs are still
+# read from each export's own data.yaml or COCO categories; filenames never
+# determine class identity.
+schema_version: 1
+
+sources:
+  # Extracted directory export received 2026-10-19. Its labels were audited as
+  # five-field YOLO detection rows; the class order comes only from data.yaml.
+  - name: unilever_brand21_20261019
+    path: data/raw/brand21_20261019
+    annotation_format: yolo_bbox
+    class_mapping_source: data_yaml
+
+  - name: brand_hazeline_v115
+    path: data/brand_zips/BRAND_CLASSIFICATION_YOLO.v115-hazeline_suatamsuachualinhlan_670g_chai.yolov8-obb.zip
+    annotation_format: yolo_obb
+    class_mapping_source: archive_data_yaml
+    sha256: 5a3fbe00359d541c769958a8dc99361db42253a8435843e054f6e27355fe4f96
+  - name: brand_lifebuoy_v159
+    path: data/brand_zips/BRAND_CLASSIFICATION_YOLO.v159-lifebuoy_xbc_matchavakhoqua_90g_banh.yolov8-obb.zip
+    annotation_format: yolo_obb
+    class_mapping_source: archive_data_yaml
+    sha256: 00ad6ee89d00c308fa15dae852a804695112cb83cb0ff8b68b109bfce2a0bb6c
+  - name: brand_vim_v167
+    path: data/brand_zips/BRAND_CLASSIFICATION_YOLO.v167-vim_vientreoboncauhuongchanh_50g_vien.yolov8-obb.zip
+    annotation_format: yolo_obb
+    class_mapping_source: archive_data_yaml
+    sha256: f524f5369bef3e844840aa3b7ca02df8109839e107da5385a744047eea2308f2
+  - name: brand_rexona_v169
+    path: data/brand_zips/BRAND_CLASSIFICATION_YOLO.v169-rexona_nulankhumuituoimat_45ml_chai.yolov8-obb.zip
+    annotation_format: yolo_obb
+    class_mapping_source: archive_data_yaml
+    sha256: 51fb27b93ac944ea0c9b26bf11668695e2b187a0ece095525e8225c03664ef04
+
+  # These COCO segmentation exports also carry explicit COCO bbox fields. The
+  # crop workflow deliberately uses those bbox fields and keeps polygons intact
+  # in the immutable source archives.
+  - name: axe_black_coco
+    path: "data/axe_zips/Stock_Segmentation-2. 69566283 AXE Nam Xit Ngan Mui Toan Than Black 135ml12 chai.coco.zip"
+    annotation_format: coco_bbox
+    class_mapping_source: coco_categories
+  - name: axe_gold_coco
+    path: "data/axe_zips/Stock_Segmentation-4. 69566284 AXE Nam Xit Ngan Mui Toan Than Gold 135ml-12 chai.coco.zip"
+    annotation_format: coco_bbox
+    class_mapping_source: coco_categories
+  - name: axe_ice_chill_coco
+    path: "data/axe_zips/Stock_Segmentation-5. 69566277 AXE Nam Xit Ngan Mui Toan Than Ice Chill 135ml-12 chai.coco.zip"
+    annotation_format: coco_bbox
+    class_mapping_source: coco_categories
+  - name: axe_golden_mango_coco
+    path: "data/axe_zips/Stock_Segmentation-8. 64863893 AXE Su-a Ta-m Nuoc Hoa Golden Mango 532ML4 Chai.coco.zip"
+    annotation_format: coco_bbox
+    class_mapping_source: coco_categories
+  - name: axe_blue_lavender_body_wash_coco
+    path: "data/axe_zips/Stock_Segmentation-9. 64863894 AXE Sua Tam Nuoc Hoa Blue Lavender 532ML-4 Chai.coco.zip"
+    annotation_format: coco_bbox
+    class_mapping_source: coco_categories
