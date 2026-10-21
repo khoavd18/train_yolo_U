@@ -1,0 +1,39 @@
+# Controlled 21-brand teacher/student experiment. Training/checkpoint IDs use
+# the exact source data.yaml order; stable application registry IDs remain
+# separate in mapping.json.
+base_config: configs/brand_21brands_yolo.yaml
+project: runs/model1_brand21_distillation
+
+compatibility:
+  verified_ultralytics: 8.3.155
+
+teacher:
+  # YOLOv8s is a conservative server default. It is materially stronger than
+  # YOLOv8n without the memory cost of running YOLOv8m beside the student.
+  model: yolov8s.pt
+  name: teacher_yolov8s_100ep_s42
+  epochs: 100
+  batch: 4
+  patience: 20
+
+student:
+  model: yolov8n.pt
+  baseline_name: student_yolov8n_baseline_100ep_s42
+  kd_name: student_yolov8n_kd_100ep_s42
+  epochs: 100
+  batch: 2
+  patience: 0
+
+kd:
+  # KD supplements supervised detection loss. Tune only from validation
+  # evidence after comparing against the ordinary YOLOv8n baseline.
+  class_weight: 0.25
+  dfl_weight: 0.25
+  temperature: 2.0
+  topk: 64
+  min_confidence: 0.05
+
+evaluation:
+  # Test is intentionally unsupported for selection/tuning.
+  split: val
+  batch: 4
