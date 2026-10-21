@@ -1,0 +1,26 @@
+# Small, controlled pilot search. This does not claim global optimality; it
+# selects the strongest candidate on validation before a full 100-epoch run.
+project: runs/model1_brand21_tuning
+name_prefix: pilot
+pilot_epochs: 25
+selection_metric: metrics/mAP50-95(B)
+selection_mode: max
+test_split_used: false
+
+trials:
+  - label: baseline
+    train: {}
+  - label: lr_5e4
+    train:
+      lr0: 0.0005
+  - label: lr_2e3
+    train:
+      lr0: 0.002
+  - label: mosaic_015_scale_010
+    train:
+      mosaic: 0.15
+      scale: 0.1
+  - label: no_mosaic
+    train:
+      mosaic: 0.0
+      close_mosaic: 0

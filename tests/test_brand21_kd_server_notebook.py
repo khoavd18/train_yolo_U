@@ -34,6 +34,9 @@ class Brand21KDServerNotebookTests(unittest.TestCase):
         )
         flags = (
             "RUN_INSTALL_DEPS",
+            "RUN_AUGMENTATION_PREVIEW",
+            "RUN_TUNING_PREFLIGHT",
+            "RUN_HYPERPARAMETER_TUNING",
             "RUN_PREFLIGHT",
             "RUN_TEACHER",
             "RUN_RESUME_TEACHER",
@@ -42,10 +45,15 @@ class Brand21KDServerNotebookTests(unittest.TestCase):
             "RUN_STUDENT_KD",
             "RUN_RESUME_KD",
             "RUN_COMPARE",
+            "RUN_INFERENCE_PREFLIGHT",
+            "RUN_INFERENCE_CALIBRATION",
         )
         for flag in flags:
             self.assertIn(f"{flag} = False", source)
         self.assertIn("scripts/train_detector_kd.py", source)
+        self.assertIn("scripts/tune_detector_hyperparameters.py", source)
+        self.assertIn("scripts/calibrate_detector_inference.py", source)
+        self.assertIn("scripts/preview_yolo_augmentations.py", source)
         self.assertIn("best_portable.pt", source)
         self.assertIn("source_data_yaml", source)
         self.assertNotIn("split='test'", source)

@@ -54,6 +54,11 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
         ),
     )
     parser.add_argument("--config", default="configs/brand_21brands_yolo_kd.yaml")
+    parser.add_argument(
+        "--base-config",
+        default=None,
+        help="Optional tuned detector config replacing base_config from the KD YAML.",
+    )
     parser.add_argument("--teacher", type=Path, default=None)
     parser.add_argument("--baseline", type=Path, default=None)
     parser.add_argument("--student", type=Path, default=None)
@@ -89,6 +94,7 @@ def load_experiment_config(
     path: str | Path,
     *,
     root: str | Path = ROOT,
+    base_config_override: str | Path | None = None,
 ) -> dict[str, Any]:
     """Load KD/base configs and validate dataset identity without model loading."""
 
@@ -101,7 +107,10 @@ def load_experiment_config(
     if missing:
         raise ValueError(f"KD experiment config is missing sections: {missing}")
     base_path = resolve_path(
-        experiment.get("base_config", "configs/brand_21brands_yolo.yaml"), root
+        base_config_override
+        if base_config_override is not None
+        else experiment.get("base_config", "configs/brand_21brands_yolo.yaml"),
+        root,
     )
     base = load_generic_yolo_config(base_path)
     plan = build_yolo_run_plan(base, base_path, root=root)
@@ -501,7 +510,9 @@ def write_comparison_report(
 
 def main(argv: Sequence[str] | None = None) -> None:
     args = parse_args(argv)
-    context = load_experiment_config(args.config)
+    context = load_experiment_config(
+        args.config, base_config_override=args.base_config
+    )
     summary = preflight_summary(context)
     print(json.dumps(summary, ensure_ascii=False, indent=2), flush=True)
     if args.command == "preflight":

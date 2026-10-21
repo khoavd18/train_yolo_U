@@ -1,0 +1,7 @@
+# Deployment-threshold calibration on validation only. Test remains untouched.
+objective: f1
+test_split_used: false
+grid:
+  imgsz: [512, 640]
+  conf: [0.15, 0.25, 0.35]
+  iou: [0.5, 0.7]
